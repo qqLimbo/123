@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Автосервис</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+
+    <div id="app">
+        <select v-on:change="chooseCar()" id="selectCar">
+		<option v-for="todo in Cars">{{todo.mark}}</option>
+	</select><br>
+        <span>Двигатель</span>
+        <select v-on:change="chooseEngine()" id="selectEngine">
+		<option v-for="todo in Cars[selectedCar].engine" >{{todo.name}} - {{todo.price}}$</option>
+	</select>
+        <p>Заказ на {{orderPrice}} $</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
