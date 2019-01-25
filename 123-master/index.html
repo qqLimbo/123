@@ -1,0 +1,42 @@
+<template>
+  <div class="root">
+    <!-- initial select (options hardcoded) -->
+    <select v-on:change="populate($event)" multiple="multiple">
+      <option value="1">One</option>
+      <option value="2">Two</option>
+    </select>
+    <select>
+      <!-- options variable is reactive -->
+      <option v-for="option in options" :value="option.value">{{option.text}}</option>
+    </select>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'Selects',
+  data () {
+    return {
+      options: []
+    }
+  },
+  methods: {
+    populate (event) {
+      const options = []
+      // iterate over the selected options
+      // event.target.selectedOptions is a HTMLCollection 
+
+      Array.from(event.target.selectedOptions).forEach(item => {
+        // or whatever logic you need
+        options.push({
+          value: item.value,
+          text: 'You have selected ${item.text}'
+        })
+      })
+
+      // update the options attribute to trigger re-rendering
+      this.options = options
+    }
+  }
+}
+</script>
