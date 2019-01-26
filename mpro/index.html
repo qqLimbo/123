@@ -8,16 +8,30 @@
 
 <body>
 
-
     <div id="app">
         <select v-on:change="chooseCar()" id="selectCar">
-		<option v-for="todo in Cars">{{todo.mark}}</option>
-	</select><br>
+            <option>Выберите модель машины</option>
+    		<option v-for="todo in Cars">{{todo.mark}}</option>
+    	</select><br>
         <span>Двигатель</span>
         <select v-on:change="chooseEngine()" id="selectEngine">
-		<option v-for="todo in Cars[selectedCar].engine" >{{todo.name}} - {{todo.price}}$</option>
-	</select>
-        <p>Заказ на {{orderPrice}} $</p>
+            <option>Выберите двигатель</option>
+    		<option v-for="todo in selectedCar !== null ? selectedCar.engine : 0" >{{todo.name}} - {{todo.price}}$</option>
+    	</select><br>
+        <span class="ti">Шины</span>
+        <select v-on:change="chooseTires()" id="selectTires">
+            <option >Выберите тип шин</option>
+            <option v-for="todo in selectedCar !== null ? selectedCar.tires : 0" >{{todo.name}} - {{todo.price}}$</option>
+        </select>
+        <div class="c1">
+        <div v-if="selectedEngine != null" >
+            {{selectedEngine.name}} = {{selectedEngine.price}}$
+        </div>
+        <div v-if="selectedTires != null" >
+            {{selectedTires.name}} = {{selectedTires.price}}$
+        </div>
+            <p>Итого заказ на {{orderPrice}} $</p>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
